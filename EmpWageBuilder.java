@@ -10,7 +10,7 @@ public class EmpWageBuilder {
 		  
 //UC-1-Check Employee is Present or Absent
 		  Random empCheck = new Random();
-	      int n = empCheck.nextInt(2);
+	      int n = empCheck.nextInt(3);
 		  if (n == 1)
 				System.out.println("Employee is Present");
 			     else
@@ -49,6 +49,12 @@ public class EmpWageBuilder {
 //UC5-Calculating Wages for a Month
 						System.out.println("Monthly wage of Employee is --> $" + monthlyWage);
 						break;
+						
+//UC6-Calculating Wages for a Month till a condition of total working hours or days is reached for a month	
+			  case 2 :
+				   workingHrs = 100;
+				   monthlyWage = workingHrs * workingDays;
+				   System.out.println("Monthly wage for 100 Hrs & 20 Days  --> $" + monthlyWage);
 						
 			  default :
 					workingHrs = 0;
