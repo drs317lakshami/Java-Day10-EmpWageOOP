@@ -1,66 +1,54 @@
 package com.blz.empwageoops;
-import java.util.Random;
-
-public class EmpWageBuilder {
+	public class EmpWageBuilder {
+	
+	public static final int IS_FULL_TIME = 1;
+	public static final int IS_PART_TIME = 2;
+	public static final int EMP_RATE_PER_HOUR = 20;
+	public static final int NUM_OF_WORKING_DAYS = 20;
+	public static final int MAX_HRS_IN_MONTH = 100;
 	
 	public static void main(String[] args) {
-		
-//Main-Branch
-		  System.out.println("Welcome to Employee Wage Computation Program :)");
-		  
-//UC-1-Check Employee is Present or Absent
-		  Random empCheck = new Random();
-	      int n = empCheck.nextInt(3);
-		  if (n == 1)
-				System.out.println("Employee is Present");
-			     else
-					System.out.println("Employee is Absent");
-//UC2-Calculate Daily Employee Wage
-			int workingHrs = 8;
-			int dailyWage = workingHrs * 20 ;
-			System.out.println("Daily wage of employee is --> $" + dailyWage );
-			
-//UC3-Add Part time Employee & Wage
-			workingHrs = 8;
-			dailyWage = workingHrs * 20 ;
-			System.out.println("Part time wage of employee is --> $" + dailyWage );
-			
-//UC4-Solving using Switch Case Statement
-			int empRatePerHr = 20;
-			int workingDays = 20;
-			int monthlyWage;
-			switch ((int)(n)) {
-					
-			  case 0 :
-					workingHrs = 8;
-					dailyWage = empRatePerHr * workingHrs;
-					monthlyWage = dailyWage * workingDays;
-					System.out.println("Employee is working Part Time");
-					System.out.println("Daily wage of employee is --> $" + dailyWage );
-				    break;
-					
-			  case 1 :
-						workingHrs = 8;
-						dailyWage = empRatePerHr * workingHrs;
-						monthlyWage = dailyWage * workingDays;
-						System.out.println("Employee is working Full Time");
-						System.out.println("Daily wage of employee is --> $" + dailyWage );
-						
-//UC5-Calculating Wages for a Month
-						System.out.println("Monthly wage of Employee is --> $" + monthlyWage);
-						break;
-						
-//UC6-Calculating Wages for a Month till a condition of total working hours or days is reached for a month	
-			  case 2 :
-				   workingHrs = 100;
-				   monthlyWage = workingHrs * workingDays;
-				   System.out.println("Monthly wage for 100 Hrs & 20 Days  --> $" + monthlyWage);
-						
-			  default :
-					workingHrs = 0;
-					break;
-				
-				}
+	
+		computeEmpWage();
 	}
-
+	
+//UC7- Re-factor the Code to write a Class Method to Compute Employee Wage
+	
+	public static void computeEmpWage() {
+		int empHrs = 0;
+		int empWage = 0;
+		int totalEmpWage = 0;
+		int totalWorkingDays = 0;
+		int totalEmpHrs = 0;		
+		
+		for (totalWorkingDays = 1; totalEmpHrs <= MAX_HRS_IN_MONTH && 
+				totalWorkingDays <= NUM_OF_WORKING_DAYS; totalWorkingDays++) {
+			int empCheck = (int) ((Math.random() * 10) % 3);
+			
+			switch(empCheck) {
+					
+			  case IS_FULL_TIME :
+				    empHrs = 8;
+					System.out.println("Employee is present : Full Time");
+					break;
+					
+			  case IS_PART_TIME :
+					empHrs = 4;
+					System.out.println("Employee is present : Part Time");
+					break;
+					
+				default :
+					empHrs = 0;
+					System.out.println("Employee is absent");	
+			}
+			
+			empWage = empHrs * EMP_RATE_PER_HOUR;
+			totalEmpHrs += empHrs;
+			totalEmpWage += empWage;
+			System.out.println("Day " + totalWorkingDays + " Employee hours : " + empHrs +"	Wage $" + empWage);
+		}
+		
+		totalEmpWage = totalEmpHrs * EMP_RATE_PER_HOUR;
+		System.out.println("\n Employee Monthly Wage : $" + totalEmpWage);
+	}
 }
