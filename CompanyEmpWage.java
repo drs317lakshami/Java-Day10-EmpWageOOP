@@ -24,4 +24,4 @@ public class CompanyEmpWage {
 	public String toString() {
 		return "\n"+companyName+" company Employee Monthly Wage : $" + totalEmpWage+"\n\n";
 	}
-}
+	}
