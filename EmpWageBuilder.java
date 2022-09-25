@@ -24,6 +24,33 @@ public class EmpWageBuilder {
 			workingHrs = 8;
 			dailyWage = workingHrs * 20 ;
 			System.out.println("Part time wage of employee is --> $" + dailyWage );
+			
+//UC4-Solving using Switch Case Statement
+			int empRatePerHr = 20;
+			int workingDays = 20;
+			int monthlyWage;
+			switch ((int)(n)) {
+					
+			  case 0 :
+					workingHrs = 8;
+					dailyWage = empRatePerHr * workingHrs;
+					monthlyWage = dailyWage * workingDays;
+					System.out.println("Employee is working Part Time");
+					System.out.println("Daily wage of employee is --> $" + dailyWage );
+				    break;
+					
+			  case 1 :
+						workingHrs = 8;
+						dailyWage = empRatePerHr * workingHrs;
+						monthlyWage = dailyWage * workingDays;
+						System.out.println("Employee is working Full Time");
+						System.out.println("Daily wage of employee is --> $" + dailyWage );
+						
+			  default :
+					workingHrs = 0;
+					break;
+				
+				}
 	}
 
 }
