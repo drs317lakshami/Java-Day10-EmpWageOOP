@@ -1,19 +1,21 @@
 package com.blz.empwageoops;
+
+
+import java.util.ArrayList;
+
 public class EmpWageBuilder implements ComputeEmpWage {
 	
 	public static final int IS_FULL_TIME = 1;
 	public static final int IS_PART_TIME = 2;
-	
-	private int numberOfCompanies = 0;
-	private CompanyEmpWage[] companyWageArray;
+	private ArrayList<CompanyEmpWage> companyWageList;	
 	
 	public EmpWageBuilder() {
-		companyWageArray = new CompanyEmpWage[5];
+		companyWageList = new ArrayList<>();
 	}
 
 	public static void main(String args[]) {
 		ComputeEmpWage wageCalculator = new EmpWageBuilder();
-	
+		
 		wageCalculator.addCompany("Google", 50, 15, 200);
 		wageCalculator.addCompany("Amazon", 80, 20, 120);	
 		wageCalculator.addCompany("Netflix", 90, 18, 220);
@@ -21,16 +23,18 @@ public class EmpWageBuilder implements ComputeEmpWage {
 	}
 	
 	public void addCompany(String companyName, int empRatePerHour, int numOfWorkingDays, int maxHoursInMonth) {
-		companyWageArray[numberOfCompanies] = new CompanyEmpWage(companyName, empRatePerHour, numOfWorkingDays, maxHoursInMonth);
-		numberOfCompanies++;
+		CompanyEmpWage companyWage = new CompanyEmpWage(companyName, empRatePerHour, numOfWorkingDays, maxHoursInMonth);
+		companyWageList.add(companyWage);
 	}
 	
 	public void computeEmpWage() {
-		for (int i=0; i<numberOfCompanies; i++) {
-			companyWageArray[i].setTotalEmpWage(this.computeEmpWage(companyWageArray[i]));
-			System.out.println(companyWageArray[i]);
+		for (int i = 0; i < companyWageList.size(); i++) {
+			CompanyEmpWage companyWage = companyWageList.get(i);
+			companyWage.setTotalEmpWage(this.computeEmpWage(companyWage));
+			System.out.println(companyWage);
 		}
 	}
+	
 	private int computeEmpWage(CompanyEmpWage companyWage) {
 		int empHrs = 0;
 		int empWage = 0;
@@ -61,5 +65,5 @@ public class EmpWageBuilder implements ComputeEmpWage {
 			System.out.println("Day " + totalWorkingDays + "	Employee hours : " + empHrs +"	Wage $" + empWage);
 		}		
 		return (totalEmpHrs * companyWage.empRatePerHour);
-	}
+	}	
 }
