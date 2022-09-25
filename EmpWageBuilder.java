@@ -46,6 +46,10 @@ public class EmpWageBuilder {
 						System.out.println("Employee is working Full Time");
 						System.out.println("Daily wage of employee is --> $" + dailyWage );
 						
+//UC5-Calculating Wages for a Month
+						System.out.println("Monthly wage of Employee is --> $" + monthlyWage);
+						break;
+						
 			  default :
 					workingHrs = 0;
 					break;
