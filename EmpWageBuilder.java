@@ -1,5 +1,7 @@
 package com.blz.empwageoops;
-	public class EmpWageBuilder {
+import java.util.Scanner;
+
+public class EmpWageBuilder {
 	
 	public static final int IS_FULL_TIME = 1;
 	public static final int IS_PART_TIME = 2;
@@ -9,17 +11,27 @@ package com.blz.empwageoops;
 	
 	public static void main(String[] args) {
 	
-		computeEmpWage();
+		computeEmpWage("OnePlus", 50, 15, 200);
+		computeEmpWage("Amazon", 80, 20, 120);
+		computeEmpWage("Meta", 60, 20, 100);
+		computeEmpWage("Oracle", 90, 18, 220);
+		computeEmpWage("Infosys", 100, 20, 250);
 	}
 	
-//UC7- Re-factor the Code to write a Class Method to Compute Employee Wage
-	
-	public static void computeEmpWage() {
+	public static void computeEmpWage(String companyName, int empRatePerHour, int numOfWorkingDays, int maxHoursInMonth) {
 		int empHrs = 0;
 		int empWage = 0;
 		int totalEmpWage = 0;
 		int totalWorkingDays = 0;
-		int totalEmpHrs = 0;		
+		int totalEmpHrs = 0;
+		
+		System.out.println(" 1.OnePlus \n 2.Amazon \n 3.Meta \n 4.Oracle \n 5.Infosys \n Choose a company : ");
+		Scanner sc = new Scanner(System.in);
+		
+		int choose = sc.nextInt();
+		
+		if(choose <= 5 && choose > 0)
+		{
 		
 		for (totalWorkingDays = 1; totalEmpHrs <= MAX_HRS_IN_MONTH && 
 				totalWorkingDays <= NUM_OF_WORKING_DAYS; totalWorkingDays++) {
@@ -50,5 +62,10 @@ package com.blz.empwageoops;
 		
 		totalEmpWage = totalEmpHrs * EMP_RATE_PER_HOUR;
 		System.out.println("\n Employee Monthly Wage : $" + totalEmpWage);
+	}
+		else
+		{
+			System.out.println("Invalid Input ");	
+		}
 	}
 }
